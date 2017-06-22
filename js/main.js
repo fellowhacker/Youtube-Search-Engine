@@ -18,12 +18,24 @@ function searchForVideos() {
 
 
     // set the result page to null for evry new req
-    $('#results').html('');
+    $('#disp_res').html('');
     $('#buttons').html('');
     
     // retrieve input from the search box
 
     q = $('#query').val();   
+
+    if(q.length == 0) {
+
+        document.getElementById("alert").style.display = "block";       
+        return false;
+
+    }
+    else {
+
+        document.getElementById("alert").style.display = "none";
+        
+    }
 
  
     $.get(
@@ -37,7 +49,7 @@ function searchForVideos() {
             
             $.each(values.items, function(i, item) {
 
-                $('#results').append(print(item, i));               
+                $('#disp_res').append(print(item, i));               
 
             });
             
@@ -55,7 +67,7 @@ function next() {
     
     
    // clear 
-    $('#results').html('');
+    $('#disp_res').html('');
     $('#buttons').html('');
     
  
@@ -74,7 +86,7 @@ function next() {
             
             $.each(values.items, function(i, item) {
                 
-                $('#results').append(print(item, i));
+                $('#disp_res').append(print(item, i));
                // count(item.id.videoId);
 
             });
@@ -91,7 +103,7 @@ function prev() {
     var q = $('#prev-button').data('query');
     
  
-    $('#results').html('');
+    $('#disp_res').html('');
     $('#buttons').html('');
     
  
@@ -110,7 +122,7 @@ function prev() {
             $.each(values.items, function(i, item) {
             	
                 
-                $('#results').append(print(item, i));
+                $('#disp_res').append(print(item, i));
 
             });
              
@@ -154,14 +166,14 @@ function display_buttons(prev_but, next_but) {
     if(!prev_but) {
         var result =     '<div class="button-container">' +
                                 '<button id="next-button" style="padding:5px;float:right" class=" btn btn-primary " data-token="' + next_but + '" data-query="' + q + '"' +
-                                    'onclick = "next();">Next Page</button>' +
+                                    'onclick = "next();">Next Page >> </button>' +
                             '</div>';
     } else {
         var result =     '<div class="button-container">' +
                                 '<button id="prev-button" style="padding:5px;float:left" class=" btn btn-primary " data-token="' + prev_but + '" data-query="' + q + '"' +
-                                    'onclick = "prev();">Prev Page</button>' +            
+                                    'onclick = "prev();"> << Prev Page</button>' +            
                                 '<button id="next-button" style="padding:5px;float:right" class=" btn btn-primary " data-token="' + next_but + '" data-query="' + q + '"' +
-                                    'onclick = "next();">Next Page</button>' +
+                                    'onclick = "next();">Next Page >> </button>' +
                             '</div>';        
     }
     
