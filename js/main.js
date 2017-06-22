@@ -25,14 +25,14 @@ function searchForVideos() {
 
     q = $('#query').val();   
 
-    if(q.length == 0) {
+    if(!q.trim()) {
 
         document.getElementById("alert").style.display = "block";       
         return false;
 
     }
     else {
-
+        console.log(q);
         document.getElementById("alert").style.display = "none";
 
     }
