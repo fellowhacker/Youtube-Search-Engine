@@ -1,4 +1,4 @@
-var api = 'AIzaSyB_rB142zrVbdrvvAhJUo3mo3DMctJFpnw';
+var api = 'ADD YOUR API KEY HERE ';
 
 $(function() {
 
