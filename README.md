@@ -1,6 +1,6 @@
 # Youtube-Search-Engine
 A search for youtube videos.
-## This uses YouTube Data API v3's search functionality to search for the video.
+## This uses YouTube Data API v3's search functionality to search for videos.
 -------------------
 
 ## Note :
