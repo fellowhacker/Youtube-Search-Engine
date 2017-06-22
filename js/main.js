@@ -34,7 +34,7 @@ function searchForVideos() {
     else {
 
         document.getElementById("alert").style.display = "none";
-        
+
     }
 
  
@@ -140,7 +140,8 @@ function print(item, i) {
     var description = item.snippet.description;
     var thumb = item.snippet.thumbnails.high.url;
     var channelname = item.snippet.channelTitle;
-    var date = item.snippet.publishedAt; 
+    var date = item.snippet.publishedAt;
+    var channelid = item.snippet.channelId; 
     var view = "viewCount" + i;
 	//console.log(id);
 	countviews(id, view);
@@ -152,7 +153,7 @@ function print(item, i) {
                         '</div>' +
                         '<div class="mat">' +
                             '<h4><a id="videoplay" href="https://youtube.com/embed/' + id + '?rel=0">' + title + '</a></h4>' +
-                            '<small> <span style="color:red">' + channelname + '</span> <br><span style="color:green" id="' + view + '"></span></small>' +
+                            '<small> <a target="blank" href="https://youtube.com/channel/' + channelid + '"><span style="color:red">' + channelname + '</span> </a><br><span style="color:green" id="' + view + '"></span></small>' +
                             '<p>' + description + '</p>' +
                         '</div>' + 
                     '</li><br>'
