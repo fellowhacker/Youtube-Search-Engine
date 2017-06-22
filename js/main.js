@@ -138,22 +138,25 @@ function print(item, i) {
     var id = item.id.videoId;
     var title = item.snippet.title;
     var description = item.snippet.description;
-    var thumb = item.snippet.thumbnails.high.url;
+    var img = item.snippet.thumbnails.high.url;
     var channelname = item.snippet.channelTitle;
     var date = item.snippet.publishedAt;
-    var channelid = item.snippet.channelId; 
+    var channelid = item.snippet.channelId;
+   // var duration =  (item.contentDetails.duration);
+     
     var view = "viewCount" + i;
-	//console.log(id);
+    var dur = "duration" + i;
 	countviews(id, view);
+    videoduration(id, dur);
  
 
     var result = '<li style="border:1px solid grey; padding:1%;margin-left:-8%">' +
                         '<div class="img">' +
-                            '<img src="' + thumb + '">' +
+                            '<img src="' + img + '">' +
                         '</div>' +
                         '<div class="mat">' +
                             '<h4><a id="videoplay" href="https://youtube.com/embed/' + id + '?rel=0">' + title + '</a></h4>' +
-                            '<small> <a target="blank" href="https://youtube.com/channel/' + channelid + '"><span style="color:red">' + channelname + '</span> </a><br><span style="color:green" id="' + view + '"></span></small>' +
+                            '<small> <a target="blank" href="https://youtube.com/channel/' + channelid + '"><span style="color:red;font-weight:bold">' + channelname + '</span> </a><br><span style="color:green" id="' + view + '"></span><br><span style="font-weight:bold;color:red" id="' + dur + '"></span></small>' +
                             '<p>' + description + '</p>' +
                         '</div>' + 
                     '</li><br>'
