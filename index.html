@@ -30,9 +30,25 @@
 		<div class="col-md-6">
 
 			<form id="search-form" name="search-form" onsubmit="return searchForVideos()">
+
 				
 				<input type="search"  id="query" class="search-field" placeholder="Search Here For Videos" autofocus="on">
 				<input type="submit" name="search-btn"  id="submit" value="Submit">
+
+				<div class="form-group">
+      
+			      <select class="form-control" id="sel1" onclick="searchForVideosBySort()">
+
+			      	<option>Sort By</option>
+			        <option>View Count</option>
+			        <option>Upload Date</option>
+			        <option>Rating</option>		        
+			        
+			      </select>
+			       		       
+			    </div>
+
+				
 
 			</form>			 
 
@@ -68,7 +84,7 @@
 
 	 
 
-		<p  style="position: fixed;bottom: 0px;margin-left: 2%;">Developed By: <a href="https://github.com/fellowhacker" target="blank" style="color: blue"> <b>Naveen Manikanta Kodigudla</b></a></p>
+		<!--  <p  style="position: fixed;bottom: 0px;margin-left: 2%;">Developed By: <a href="https://github.com/fellowhacker" target="blank" style="color: blue"> <b>Naveen Manikanta Kodigudla</b></a></p>  -->
 
  
 

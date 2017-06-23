@@ -1,27 +1,37 @@
-var api = 'ADD YOUR API KEY HERE ';
+var api = 'AIzaSyB_rB142zrVbdrvvAhJUo3mo3DMctJFpnw';
 
-$(function() {
 
-	// prevents search-from from submitting
+$(function() {  
 
-	$('#search-form').submit( function(e) {
+    // prevents search-from from submitting
 
-		e.preventDefault();
+    $('#search-form').submit( function(e) {
 
-	});
+        e.preventDefault();
+
+    });
 
 });
 
-// func for searching videos
+$('#sel1').click( function() {
+
+    console.log("aaa");
+    searchForVideos();
+
+
+});
+ 
 
 function searchForVideos() {
 
 
-    // set the result page to null for evry new req
+    var select = $('#sel1').find(':selected').text();
+  
+    var order = checkfororder(select);
+     
     $('#disp_res').html('');
     $('#buttons').html('');
     
-    // retrieve input from the search box
 
     q = $('#query').val();   
 
@@ -32,7 +42,7 @@ function searchForVideos() {
 
     }
     else {
-        console.log(q);
+        
         document.getElementById("alert").style.display = "none";
 
     }
@@ -44,6 +54,7 @@ function searchForVideos() {
             q: q,
             maxResults: '10',
             type: 'video',
+            order : order,
             key: api
         }, function(values) {
             
@@ -65,6 +76,11 @@ function next() {
     var token = $('#next-button').data('token');
     var q = $('#next-button').data('query');
     
+    var select = $('#sel1').find(':selected').text();
+
+    console.log(select);
+
+    var order = checkfororder(select);
     
    // clear 
     $('#disp_res').html('');
@@ -74,12 +90,13 @@ function next() {
     q = $('#query').val();   
 
     $.get(
-    	"https://www.googleapis.com/youtube/v3/search", {
+        "https://www.googleapis.com/youtube/v3/search", {
             part: 'snippet, id',
             q: q,
             maxResults: '10',
             pageToken: token,
             type: 'video',
+            order : order,
             key: api
         }, function(values) {
             
@@ -87,7 +104,6 @@ function next() {
             $.each(values.items, function(i, item) {
                 
                 $('#disp_res').append(print(item, i));
-               // count(item.id.videoId);
 
             });
             
@@ -102,6 +118,11 @@ function prev() {
     var token = $('#prev-button').data('token');
     var q = $('#prev-button').data('query');
     
+    var select = $('#sel1').find(':selected').text();
+
+    console.log(select);
+
+    var order = checkfororder(select);
  
     $('#disp_res').html('');
     $('#buttons').html('');
@@ -110,17 +131,18 @@ function prev() {
     q = $('#query').val();   
 
     $.get(
-    	"https://www.googleapis.com/youtube/v3/search", {
+        "https://www.googleapis.com/youtube/v3/search", {
             part: 'snippet, id',
             q: q,
             maxResults: '10',
             pageToken: token,
             type: 'video',
+            order : order,
             key: api
         }, function(values) {
             
             $.each(values.items, function(i, item) {
-            	
+                
                 
                 $('#disp_res').append(print(item, i));
 
@@ -141,12 +163,10 @@ function print(item, i) {
     var img = item.snippet.thumbnails.high.url;
     var channelname = item.snippet.channelTitle;
     var date = item.snippet.publishedAt;
-    var channelid = item.snippet.channelId;
-   // var duration =  (item.contentDetails.duration);
-     
+    var channelid = item.snippet.channelId;    
     var view = "viewCount" + i;
     var dur = "duration" + i;
-	countviews(id, view);
+    countviews(id, view);
     videoduration(id, dur);
  
 
@@ -167,19 +187,50 @@ function print(item, i) {
 
 
 function display_buttons(prev_but, next_but) {
+
     if(!prev_but) {
+
         var result =     '<div class="button-container">' +
                                 '<button id="next-button" style="padding:5px;float:right" class=" btn btn-primary " data-token="' + next_but + '" data-query="' + q + '"' +
                                     'onclick = "next();">Next Page >> </button>' +
                             '</div>';
-    } else {
+
+    }
+    else {
+
         var result =     '<div class="button-container">' +
                                 '<button id="prev-button" style="padding:5px;float:left" class=" btn btn-primary " data-token="' + prev_but + '" data-query="' + q + '"' +
                                     'onclick = "prev();"> << Prev Page</button>' +            
                                 '<button id="next-button" style="padding:5px;float:right" class=" btn btn-primary " data-token="' + next_but + '" data-query="' + q + '"' +
                                     'onclick = "next();">Next Page >> </button>' +
                             '</div>';        
+   
     }
     
     return result;
+
 }
+
+ function searchForVideosBySort() {
+
+    var select = $('#sel1').find(':selected').text();
+    if(select == 'Upload Date' || select == 'View Count' || select == 'Rating')
+        searchForVideos();
+
+ }
+
+ function checkfororder(select) {
+
+    if(select == 'Upload Date') {
+        return 'date';
+    }
+    else if(select == 'View Count') {
+        return 'viewCount';
+    }
+    else if(select == 'Rating') {
+        return 'rating';
+    }
+    else    
+        return 'relevance';
+
+ }
