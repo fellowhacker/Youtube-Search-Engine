@@ -214,7 +214,7 @@ function display_buttons(prev_but, next_but) {
  function searchForVideosBySort() {
 
     var select = $('#sel1').find(':selected').text();
-    if(select == 'Upload Date' || select == 'View Count' || select == 'Rating')
+    if(select == 'Upload Date' || select == 'View Count' || select == 'Rating' || select == 'Default')
         searchForVideos();
 
  }
@@ -230,7 +230,7 @@ function display_buttons(prev_but, next_but) {
     else if(select == 'Rating') {
         return 'rating';
     }
-    else    
+    else     
         return 'relevance';
 
  }
