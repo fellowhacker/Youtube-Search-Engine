@@ -170,14 +170,14 @@ function print(item, i) {
     videoduration(id, dur);
  
 
-    var result = '<li style="border:1px solid grey; padding:1%;margin-left:-8%">' +
+    var result = '<li style="border:1px solid grey; padding:1%;margin-left:-8%;box-shadow:0 0 8px grey;">' +
                         '<div class="img">' +
                             '<img src="' + img + '">' +
                         '</div>' +
                         '<div class="mat">' +
                             '<h4><a id="videoplay" href="https://youtube.com/embed/' + id + '?rel=0">' + title + '</a></h4>' +
-                            '<small> <a target="blank" href="https://youtube.com/channel/' + channelid + '"><span style="color:red;font-weight:bold">' + channelname + '</span> </a><br><span style="color:green" id="' + view + '"></span><br><span style="font-weight:bold;color:red" id="' + dur + '"></span></small>' +
-                            '<p>' + description + '</p>' +
+                            '<b>  <a target="blank" style="color : #e44c65;" href="https://youtube.com/channel/' + channelid + '"><span style="color : #e44c65;">' + channelname + '</span> </a><br><span style="color:green" id="' + view + '"></span><br><span style="color : #e44c65;" id="' + dur + '"></span> </b>' +
+                            '<p style="color:white;">' + description + '</p>' +
                         '</div>' + 
                     '</li><br>'
 

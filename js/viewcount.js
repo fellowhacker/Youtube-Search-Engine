@@ -18,7 +18,7 @@ function countviews(id, view) {
  
                 $.each(data.items, function (i, item) {
      
-                    $('#'+view).text(item.statistics.viewCount + ' views , Likes ' + item.statistics.likeCount + ' , Dislikes ' + item.statistics.dislikeCount);
+                    $('#'+view).text('Views ' +    item.statistics.viewCount + ' , Likes ' + item.statistics.likeCount + ' , Dislikes ' + item.statistics.dislikeCount);
 
                 })
             
