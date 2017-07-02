@@ -31,6 +31,13 @@ function searchForVideos() {
      
     $('#disp_res').html('');
     $('#buttons').html('');
+
+
+   /* // to dissapear keyboard on submit for smaller screens
+    if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+       // $('input').blur();
+    }*/
+    $('input').blur();
     
 
     q = $('#query').val();   
